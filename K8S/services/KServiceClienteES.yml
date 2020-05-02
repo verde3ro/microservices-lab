@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: es-cliente
+    tipomanager: Kubernetes
+  name: es-cliente-svc #nombre del servicio
+spec:
+  type: LoadBalancer #tipo de servicio que va a desplegar
+  ports:
+    - name: "http"
+      port: 1005 #puerto de conexion del pod
+      targetPort: 1005
+  selector:
+    app: es-cliente #el nombre del servicio al que se le hara conexion

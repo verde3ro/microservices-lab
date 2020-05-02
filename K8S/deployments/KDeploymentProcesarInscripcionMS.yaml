@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-procesarinscription-pod #Campo obligatorio para identificar el deployment
+  namespace: default #namespace donde se instalara este deployment
+  labels:
+    tipomanager: Kubernetes
+    version: "v1"
+    tier: backend
+    env: dev
+    app: ms-procesarinscription
+  annotations:
+    desc: Unidad que nos permite gestionar de mejor manera los pods
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms-procesarinscription-pod  #nombre base que tendra el pod que tiene que coincidir con el templates.app
+  template:
+    metadata:
+      labels:
+        version: "v1"
+        app: ms-procesarinscription-pod
+    spec:
+      containers:
+        - image: jorgeheredia/microservices-lab:ms-procesarinscripcion-v1.0.0 #Se declara la ubicacion del repositorio y la imagen a utilizar
+          resources:
+            requests:
+              memory: 64Mi #El requerimiento de memoria para el pod
+            limits:
+              memory: 300Mi # El limite de memoria con la cual va trabajar
+          imagePullPolicy: Always
+          name: ms-procesarinscription #nombre base que tendra el contenedor dentro del pod
+          ports:
+            - containerPort: 1001
+        - image: jorgeheredia/microservices-lab:us-correo-v1.0.0 #Se declara la ubicacion del repositorio y la imagen a utilizar
+          resources:
+            requests:
+              memory: 64Mi #El requerimiento de memoria para el pod
+            limits:
+              memory: 300Mi # El limite de memoria con la cual va trabajar
+          imagePullPolicy: Always
+          name: us-correo #nombre base que tendra el contenedor dentro del pod
+          ports:
+            - containerPort: 1008
+      imagePullSecrets:
+        - name: dockerhubkey
+      restartPolicy: Always

@@ -1,0 +1,205 @@
+version: '3.4'
+services:
+  #Microservicio ProcesarInscripcionMS
+  itehl.ms-procesarinscripcion:
+    build:
+      context: ./ms/ProcesarInscripcionMS
+      dockerfile: ./Dockerfile
+    image: itehl/ms-procesarinscripcion
+    ports:
+      - 1000:1001
+    container_name: itehl-ms-procesarinscripcion-api
+    depends_on:
+      - mongo.inscripcion.es.db
+    networks:
+      - compose_FortNet
+
+  #Microservicio ReservarCupo
+  itehl.ms-reservarcupo:
+    build:
+      context: ./ms/ReservarCupoMS
+      dockerfile: ./Dockerfile
+    image: itehl/ms-reservarcupo
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-ms-reservarcupo-db:27017/admin
+    ports:
+      - 1002:1002
+    container_name: itehl-ms-reservarcupo-api
+    depends_on:
+      - mongo.reservarcupo.ms.db
+    networks:
+      - compose_FortNet
+  mongo.reservarcupo.ms.db:
+    container_name: itehl-ms-reservarcupo-db
+    image: mongo:latest
+    volumes:
+      - ms-reservarcupo-data:/data/db
+    ports:
+      - 27018:27017
+    networks:
+      - compose_FortNet
+
+  #Servicio de Entidad InscripcionES
+  itehl.es-inscripcion:
+    build:
+      context: ./es/InscripcionES
+      dockerfile: ./Dockerfile
+    image: itehl/es-inscripcion
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-es-inscripcion-db:27017/admin
+    ports:
+      - 1003:1003
+    container_name: itehl-es-inscripcion-api
+    depends_on:
+      - mongo.inscripcion.es.db
+    networks:
+      - compose_FortNet
+  mongo.inscripcion.es.db:
+    container_name: itehl-es-inscripcion-db
+    image: mongo:latest
+    volumes:
+      - es-inscripcion-data:/data/db
+    ports:
+      - 27019:27017
+    networks:
+      - compose_FortNet
+
+  #Servicio de Entidad CursoES
+  itehl.es-curso:
+    build:
+      context: ./es/CursoES
+      dockerfile: ./Dockerfile
+    image: itehl/es-curso
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-es-curso-db:27017/admin
+    ports:
+      - 1004:1004
+    container_name: itehl-es-curso-api
+    depends_on:
+      - mongo.curso.es.db
+    networks:
+      - compose_FortNet
+  mongo.curso.es.db:
+    container_name: itehl-es-curso-db
+    image: mongo:latest
+    volumes:
+      - es-curso-data:/data/db
+    ports:
+      - 27020:27017
+    networks:
+      - compose_FortNet
+
+  #Servicio de Entidad ClienteES
+  itehl.es-cliente:
+    build:
+      context: ./es/ClienteES
+      dockerfile: ./Dockerfile
+    image: itehl/es-cliente
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-es-cliente-db:27017/admin
+    ports:
+      - 1005:1005
+    container_name: itehl-es-cliente-api
+    depends_on:
+      - mongo.cliente.es.db
+    networks:
+      - compose_FortNet
+  mongo.cliente.es.db:
+    container_name: itehl-es-cliente-db
+    image: mongo:latest
+    volumes:
+      - es-cliente-data:/data/db
+    ports:
+      - 27021:27017
+    networks:
+      - compose_FortNet
+
+  #Microservicio ConsultarInscripciones
+  itehl.ms-consultarinscripciones:
+    build:
+      context: ./ms/ConsultarInscripcionesMS
+      dockerfile: ./Dockerfile
+    image: itehl/ms-consultarinscripciones
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-ms-consultarinscripciones-db:27017/admin
+    ports:
+      - 1009:1009
+    container_name: itehl-ms-consultarinscripciones-api
+    depends_on:
+      - mongo.consultarinscripciones.ms.db
+    networks:
+      - compose_FortNet
+  mongo.consultarinscripciones.ms.db:
+    container_name: itehl-ms-consultarinscripciones-db
+    image: mongo:latest
+    volumes:
+      - ms-consultarinscripciones-data:/data/db
+    ports:
+      - 27022:27017
+    networks:
+      - compose_FortNet
+
+  #Servicio de Utilidad CorreoUS
+  itehl.us-correo:
+    build:
+      context: ./us/CorreoUS_Ambassador
+      dockerfile: ./Dockerfile
+    image: itehl/us-correo
+    ports:
+      - 1008:1008
+    container_name: itehl-us-correo-api
+    networks:
+      - compose_FortNet
+
+  #Microservicio EnviarCorreoPlantillaMS
+  itehl.ms-enviarcorreoplantilla:
+    container_name: itehl-ms-enviarcorreo-api
+    image: itehl/ms-enviarcorreoplantilla
+    build:
+      context: ./ms/EnviarCorreoPlantillaMS/
+      dockerfile: ./Dockerfile
+    environment:
+      - CONSUL=http://consul:8500/
+    ports:
+      - "1006:1006"
+    networks:
+      - compose_FortNet
+
+  #Servicio de Utilidad PlantillaCorreoUS
+  itehl.us-plantillacorreo:
+    image: itehl/us-plantillacorreo
+    build:
+      context: ./us/PlantillaCorreoUS/
+      dockerfile: ./Dockerfile
+    environment:
+      - CONNECTION_STRING=mongodb://itehl-us-plantilla-db:27017/admin
+      - CONSUL=http://consul:8500/
+    #container_name: itehl-us-plantillacorreo-api
+    depends_on:
+      - mongo.plantilla.us.db
+ #   ports:
+ #     - "1010-1014:1007"
+    networks:
+      - compose_FortNet
+
+  mongo.plantilla.us.db:
+    container_name: itehl-us-plantilla-db
+    image: mongo:latest
+    volumes:
+      - us-plantilla-data:/data/db
+    ports:
+      - 27023:27017
+    networks:
+      - compose_FortNet
+
+volumes:
+  ms-reservarcupo-data:
+  es-inscripcion-data:
+  es-curso-data:
+  es-cliente-data:
+  ms-consultarinscripciones-data:
+  us-plantilla-data:
+
+networks:
+  compose_FortNet:
+    external: true

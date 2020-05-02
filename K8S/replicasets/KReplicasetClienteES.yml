@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: es-cliente-rs
+  labels:
+    app: cliente
+    tier: back-end
+spec:
+  replicas: 3 #La cantidad de replicas que va a garantizar
+  selector:
+    matchLabels:
+      app: es-cliente
+  template:
+    metadata:
+      labels:
+        app: es-cliente
+    spec:
+      containers:
+      - name: es-cliente
+        image: jorgeheredia/microservices-lab:es-cliente-v1.0.0
+      - name: mongo-cliente
+        image: mongo:4.0.14
+

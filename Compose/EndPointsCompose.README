@@ -1,0 +1,63 @@
+******** Infra ********
+
+######## Consul #########
+localhost:8500
+
+######## Kafka Manager #########
+localhost:9000
+
+######## Kibana #########
+localhost:5601
+
+######## Kafka #########
+localhost:9092
+
+######## Zookeeper #########
+localhost:2181
+
+******** Infra ********
+
+######## cliente #########
+localhost:1005
+
+######## cliente-db #########
+localhost:27021
+
+######## curso #########
+localhost:1004
+
+######## curso-db #########
+localhost:27020
+
+######## procesar-incripcion #########
+localhost:1001
+
+######## reservar-cupo #########
+localhost:1002
+
+######## reservar-cupo-db #########
+localhost:27018
+
+######## inscripcion #########
+localhost:1003
+
+######## inscripcion-db #########
+localhost:27019
+
+######## consultar-inscripciones #########
+localhost:1009
+
+######## consultar-inscripciones-db #########
+localhost:27022
+
+######## correo #########
+localhost:1008
+
+######## enviar-correo-plantilla #########
+localhost:1006
+
+######## plantilla-correo #########
+localhost:1007
+
+######## plantilla-correo-db #########
+localhost:27023

@@ -1,0 +1,52 @@
+#Variables referentes a kubernetes
+kubernetes:
+  api:
+  #imagen que sera utilizada en el despliegue
+    image:
+      repository: jorgeheredia/microservices-lab
+      tag: "es-cliente"
+      version: "-v1.0.0"
+    #cantidad de replicas a utilizar
+    replicaCount: 1
+    service:
+      type: ClusterIP
+      port: 1005
+    container:
+      port: 1005
+    ingress:
+    #url desde la cual sera accedida el api
+      host: es.cliente
+    #nombre global del aplicativo
+    nombre_global: es-cliente
+    #Recursos que consume el deployment
+    resources:
+      requests:
+        memory: "64Mi"
+      limits:
+        memory: "300Mi"
+
+  db:
+    image:
+      repository: mongo
+      tag: "4.0.14"
+    service:
+      type: LoadBalancer
+      port: 27017
+    container:
+      port: 27017
+    #nombre global del aplicativo
+    nombre_global: db-cliente
+    #Recursos que consume el deployment
+    resources:
+      requests:
+        memory: "100Mi"
+      limits:
+        memory: "600Mi"
+    database_name: clientesDB
+    collection_name: Agenda
+    
+
+global:
+  namespace: default
+
+
