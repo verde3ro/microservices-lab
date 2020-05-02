@@ -1,4 +1,4 @@
-# microservices-lab
+# Microservices-lab Itehl Digital
 Bienvenido al laboratorio de Microservicios.
 
 Los artefactos del laboratorio están oranizados de la sisguiente forma:
