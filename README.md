@@ -1,7 +1,7 @@
 # Microservices-lab Itehl Digital
 Bienvenido al laboratorio de Microservicios.
 
-Los artefactos del laboratorio están oranizados de la sisguiente forma:
+Los artefactos del laboratorio están organizados de la sisguiente forma:
 
 **Carpeta Compose:** 
 
