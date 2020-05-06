@@ -1,0 +1,40 @@
+Vagrant.configure("2") do |config|
+
+    config.vm.box = "ubuntu/bionic64"
+    config.vm.provision :docker
+    config.vm.network "forwarded_port", guest: 8500, host: 8500, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1005, host: 1004, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1004, host: 1004, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1003, host: 1003, host_ip: "127.0.0.1"
+  
+    config.vm.define "Itehl_MicroservicesLab" do |node| 
+      node.vm.hostname = "MicroservicesLab"  
+      node.vm.provider "virtualbox" do |vb|
+        # Habilita la conexion a internet
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        vb.memory = 10240
+        vb.cpus = 2
+        vb.name = "MicroservicesLab"
+  
+      end
+  
+      # Aprovisionamiento de software
+  
+      node.vm.provision :shell, inline: <<-SHELL
+      sudo apt install -y maven
+      wget https://packages.microsoft.com/config/ubuntu/19.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+      sudo dpkg -i packages-microsoft-prod.deb
+      sudo apt-get update
+      sudo apt-get install apt-transport-https
+      sudo apt-get update
+      sudo apt-get install -y dotnet-sdk-3.1
+      git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
+      cd /vagrant/microservices-lab/Compose/
+      sh compileServicesUnix.sh
+      SHELL
+    end
+  
+   config.vm.provision :docker_compose, yml: "/vagrant/microservices-lab/Compose/docker-compose-infra.yaml", run: "always"
+  
+  end
