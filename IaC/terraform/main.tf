@@ -5,6 +5,15 @@ provider "azurerm" {
     features {}
 }
 
+provider "docker" {
+    host = "tcp://localhost:2376"
+
+    registry_auth {
+      address = "registry.hub.docker.com"
+      config_file = "${pathexpand("~/.docker/config.json")}"
+    }
+    }
+
 terraform {
     backend "azurerm" {}
 }

@@ -1,6 +1,10 @@
 resource "azurerm_resource_group" "k8s" {
     name     = var.resource_group_name
     location = var.location
+    
+  site_config {
+    linux_fx_version = "DOTNETCORE|3.1"
+  }
 }
 
 resource "random_id" "log_analytics_workspace_name_suffix" {
@@ -63,4 +67,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     tags = {
         Environment = "Development"
     }
+
+
+}
+resource "azure_instance" "docker-compose" {
+  provisioner "local-exec" {
+    command = "wget https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose"
+  }
 }
