@@ -32,9 +32,8 @@ Vagrant.configure("2") do |config|
       git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
       cd /vagrant/microservices-lab/Compose/
       sh compileServicesUnix.sh
+      docker-compose -f docker-compose-infra.yaml up -d
       SHELL
     end
-  
-   config.vm.provision :docker_compose, yml: "/vagrant/microservices-lab/Compose/docker-compose-infra.yaml", run: "always"
   
   end
