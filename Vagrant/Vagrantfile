@@ -7,6 +7,16 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 1005, host: 1005, host_ip: "127.0.0.1"
     config.vm.network "forwarded_port", guest: 1004, host: 1004, host_ip: "127.0.0.1"
     config.vm.network "forwarded_port", guest: 1003, host: 1003, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1001, host: 1001, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27018, host: 27018, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27019, host: 27019, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27020, host: 27020, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27021, host: 27021, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1009, host: 1009, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27022, host: 27022, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1008, host: 1008, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 1006, host: 1006, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 27023, host: 27023, host_ip: "127.0.0.1"
   
     config.vm.define "Itehl_MicroservicesLab" do |node| 
       node.vm.hostname = "MicroservicesLab"  
