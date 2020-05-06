@@ -47,19 +47,13 @@ services:
       - "8500:8500"
     networks:
       - FortNet
-  kafka-manager:
-    container_name: kafka-manager
-    image: hlebalbau/kafka-manager:1.3.3.16
-    restart: on-failure
+  kafka-client:
+    container_name: kafka-client
+    image: confluentinc/cp-kafka:5.4.1
     depends_on:
       - kafka
       - zookeeper
-    command: -Dconfig.file=/kafka-manager/conf/application.conf -Dapplication.home=/kafkamanager
-    environment:
-      - ZK_HOSTS=zookeeper
-      - APPLICATION_SECRET=letmein
-    ports:
-      - "9000:9000"
+    command: sh -c "exec tail -f /dev/null"
     networks:
       - FortNet
   #Fin infra
