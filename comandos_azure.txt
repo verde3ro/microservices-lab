@@ -1,0 +1,88 @@
+az storage container create -n tfstate --account-name NombreCuentaAlmacenamiento --account-key LlaveAlmacenamientoAzure
+
+git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
+
+terraform init -backend-config="storage_account_name=NombreCuentaAlmacenamiento" -backend-config="container_name=tfstate" -backend-config="access_key=LlaveAlmacenamientoAzure" -backend-config="key=codelab.microsoft-tfstate"
+
+az ad sp create-for-rbac --name ItehlAzurePrincipal
+
+ssh-keygen -t rsa
+
+export TF_VAR_client_id=appId
+
+export TF_VAR_client_secret=password
+
+terraform plan -out out.plan
+
+terraform apply out.plan
+
+echo "$(terraform output kube_config)" > $HOME/azurek8s
+
+export KUBECONFIG=$HOME/azurek8s
+
+kubectl get nodes
+
+az aks browse --resource-group azure-k8stest --name k8stest
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
+kubectl apply -f KSecretDockerhub.yaml
+
+kubectl apply -f KPodClienteES.yml
+
+kubectl exec es-cliente-v1.0.0 -it /bin/bash
+
+exit
+
+kubectl logs es-cliente-v1.0.0 es-cliente
+
+kubectl describe pod es-cliente-v1.0.0
+
+kubectl apply -f KReplicasetClienteES.yml
+
+kubectl describe replicaset es-cliente
+
+kubectl apply -f KServiceClienteES.yml
+
+kubectl get svc
+
+kubectl describe svc es-cliente
+
+kubectl get all
+
+kubectl delete replicaset es-cliente
+
+kubectl delete pod es-cliente-v1.0.0
+
+kubectl apply KDeploymentClienteES.yaml
+
+kubectl get all
+
+kubectl delete deployment es-cliente
+
+kubectl delete svc es-cliente
+
+kubectl delete secret dockerhubkey
+
+helm install ingraestructura\ infra/
+
+kubectl get pods
+
+kubectl exec -it kafka-client /bin/bash
+
+kafka-topics --create --bootstrap-server infraestructura-cp-kafka:9092 --replication-factor 1 --partitions 1 --topic inscriptionReplicated
+
+kafka-topics --create --bootstrap-server infraestructura-cp-kafka:9092 --replication-factor 1 --partitions 1 --topic inscriptionUpdated
+
+kafka-topics --create --bootstrap-server infraestructura-cp-kafka:9092 --replication-factor 1 --partitions 1 --topic inscriptionCreated
+
+cd  $HOME/microservices-lab/K8S
+
+helm install services helm\ services
+
+kubectl get pods
+
+kubectl get svc
+
+kubectl get ing
+
