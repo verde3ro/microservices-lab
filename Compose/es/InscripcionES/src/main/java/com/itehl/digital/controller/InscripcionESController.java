@@ -79,7 +79,7 @@ public class InscripcionESController {
 
     }
 
-    @PostMapping("/actualizar")
+    @PutMapping("/actualizar")
     @ResponseStatus(HttpStatus.CREATED)
     public InscripcionModel actualizarInscripcion(@RequestBody InscripcionDTO inscripcionDTO) {
 
