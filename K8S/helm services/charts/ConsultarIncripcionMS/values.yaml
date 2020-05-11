@@ -30,7 +30,7 @@ kubernetes:
       tag: "4.0.14"
     service:
       type: LoadBalancer
-      port: 27018
+      port: 27022
     container:
       port: 27017
     #nombre global del aplicativo

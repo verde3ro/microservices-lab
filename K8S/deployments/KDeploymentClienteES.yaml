@@ -31,7 +31,7 @@ spec:
             limits:
               memory: 300Mi # El limite de memoria con la cual va trabajar
           imagePullPolicy: Always
-          name: es-cliente-v1.0.0 #nombre base que tendra el contenedor dentro del pod
+          name: es-cliente #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: 1005
         - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
