@@ -1,9 +1,9 @@
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "ubuntu/bionic64"
-    config.vm.provision :docker
-    config.vm.provision :docker_compose
-    
+    config.vm.box = "itehl-microlab"
+
+    config.ssh.password = 'vagrant'
+    config.ssh.insert_key = false
 #Puertos APIs
     
     config.vm.network "forwarded_port", guest: 1001, host: 1001
@@ -38,21 +38,12 @@ Vagrant.configure("2") do |config|
         vb.memory = 4000
         vb.cpus = 2
         vb.name = "Itehl_MicroservicesLab"
+
   
       end
-  
-# Aprovisionamiento de software
-  
       node.vm.provision :shell, inline: <<-SHELL
-      sudo apt install -y maven
-      wget https://packages.microsoft.com/config/ubuntu/19.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-      sudo dpkg -i packages-microsoft-prod.deb
-      sudo apt-get update
-      sudo apt-get install apt-transport-https
-      sudo apt-get update
-      sudo apt-get install -y dotnet-sdk-3.1
       git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
       SHELL
-    end
+   end
   
   end
