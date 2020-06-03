@@ -1,9 +1,23 @@
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "itehl-microlab"
-
-    config.ssh.password = 'vagrant'
+    config.vm.box = "itehl-digital/itehl-microlab"
     config.ssh.insert_key = false
+    # Habilita la conexion a internet
+    config.vm.define "node" do |node|
+        node.vm.provider "virtualbox" do |vb|
+            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+            vb.gui = false
+            vb.name = "Itehl_MicroLab"
+            vb.memory = 4000
+            vb.cpus = 3
+        end
+        node.vm.provision :shell, inline: <<-SHELL
+          echo 'export PATH=$PATH:/snap/bin' >> ~/.bashrc
+          git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
+          docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yml up -d
+        SHELL
+    end
 #Puertos APIs
     
     config.vm.network "forwarded_port", guest: 1001, host: 1001
@@ -18,32 +32,12 @@ Vagrant.configure("2") do |config|
 
 #Puertos DB
 
-    config.vm.network "forwarded_port", guest: 27018, host: 27018
-    config.vm.network "forwarded_port", guest: 27019, host: 27019
-    config.vm.network "forwarded_port", guest: 27020, host: 27020
-    config.vm.network "forwarded_port", guest: 27021, host: 27021
-    config.vm.network "forwarded_port", guest: 27022, host: 27022
-    config.vm.network "forwarded_port", guest: 27023, host: 27023
+    config.vm.network "forwarded_port", guest: 27017, host: 27017
 
 #Puertos Infra
 
     config.vm.network "forwarded_port", guest: 8500, host: 8500
-    
-    config.vm.define "Itehl_MicroservicesLab" do |node| 
-      node.vm.hostname = "MicroservicesLab"  
-      node.vm.provider "virtualbox" do |vb|
-        # Habilita la conexion a internet
-        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-        vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-        vb.memory = 4000
-        vb.cpus = 2
-        vb.name = "Itehl_MicroservicesLab"
 
+    end
   
-      end
-      node.vm.provision :shell, inline: <<-SHELL
-      git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
-      SHELL
-   end
-  
-  end
+

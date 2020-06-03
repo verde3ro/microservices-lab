@@ -140,15 +140,6 @@ services:
     networks:
       - compose_FortNet
 
-  mongo.plantilla.us.db:
-    container_name: itehl-us-plantilla-db
-    image: mongo:latest
-    volumes:
-      - us-plantilla-data:/data/db
-    ports:
-      - 27023:27017
-    networks:
-      - compose_FortNet
 
 
   mongo.db:

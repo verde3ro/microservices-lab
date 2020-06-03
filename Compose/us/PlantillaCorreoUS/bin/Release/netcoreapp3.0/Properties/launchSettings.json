@@ -23,7 +23,7 @@
       "launchUrl": "http://localhost:5004/swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "CONNECTION_STRING": "mongodb://localhost:27017/admin",
+        "CONNECTION_STRING": "mongodb://mongo-infra:27017/admin",
         "COLLECTION_NAME": "PlantillaCorreo",
         "DATABASE_NAME": "LabPlantillaCorreoDB",
         "PROYECTO": "Laboratorio",
