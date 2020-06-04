@@ -1,21 +1,53 @@
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "itehl-digital/itehl-microlab"
+    config.vm.box = "ubuntu/bionic64"
     config.ssh.insert_key = false
     # Habilita la conexion a internet
     config.vm.define "node" do |node|
+        node.vm.boot_timeout = 600
         node.vm.provider "virtualbox" do |vb|
-            vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-            vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
             vb.gui = false
             vb.name = "Itehl_MicroLab"
-            vb.memory = 4000
+            vb.memory = 6000
             vb.cpus = 3
         end
+        node.vm.network "public_network", ip:"186.165.25.25",  bridge: "Intel(R) Dual Band Wireless-AC 3165"
         node.vm.provision :shell, inline: <<-SHELL
-          echo 'export PATH=$PATH:/snap/bin' >> ~/.bashrc
+          #dcoker y docker-compose
+          sudo apt install docker.io
+          sudo apt install docker-compose
+
+          #Kubernetes para entornos de pruebas o desarrollo0
+          curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
+          sudo cp minikube /usr/local/bin && rm minikube
+          sudo apt-get update -y
+          sudo apt-get install -y conntrack
+          minikube addons enable ingress
+          sudo minikube start --vm-driver=none
+
+          #Herramienta de linea de comando de kubernetes
+          sudo apt-get update && sudo apt-get install -y apt-transport-https
+          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+          sudo apt-get update
+          sudo apt-get install -y kubectl
+
+          #Balanceador de carga
+          sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
+          #Instalacionde Maven
+          sudo apt install -y maven
+
+          #Instalacion de dotnet
+          wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+          sudo dpkg -i packages-microsoft-prod.deb
+          sudo apt-get update
+          sudo apt-get install apt-transport-https
+          sudo apt-get update
+          sudo apt-get install -y dotnet-sdk-3.1
+          sudo snap install helm --classic
           git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
-          docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yml up -d
+          docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yaml up -d
         SHELL
     end
 #Puertos APIs
