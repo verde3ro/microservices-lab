@@ -61,6 +61,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 1007, host: 1007
     config.vm.network "forwarded_port", guest: 1008, host: 1008
     config.vm.network "forwarded_port", guest: 1009, host: 1009
+    config.vm.network "forwarded_port", guest: 80, host: 80
 
 #Puertos DB
 
