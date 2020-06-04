@@ -15,6 +15,12 @@ Vagrant.configure("2") do |config|
         end
         node.vm.network "public_network", ip:"186.165.25.25",  bridge: "Intel(R) Dual Band Wireless-AC 3165"
         node.vm.provision :shell, inline: <<-SHELL
+          #Herramienta de linea de comando de kubernetes
+          sudo apt-get update && sudo apt-get install -y apt-transport-https
+          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+          sudo apt-get update
+          sudo apt-get install -y kubectl
 
           #Kubernetes para entornos de pruebas o desarrollo0
           curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
@@ -23,13 +29,6 @@ Vagrant.configure("2") do |config|
           sudo apt-get install -y conntrack
           sudo minikube start --vm-driver=none
           sudo minikube addons enable ingress
-
-          #Herramienta de linea de comando de kubernetes
-          sudo apt-get update && sudo apt-get install -y apt-transport-https
-          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-          sudo apt-get update
-          sudo apt-get install -y kubectl
 
           #Balanceador de carga
           sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
