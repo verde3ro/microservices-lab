@@ -1,0 +1,6 @@
+apiVersion: v1
+appVersion: "1.0"
+description: Helm chart del secret el cual se utiliza para la autenticacion en el repositorio privado
+name: SecretDockerhubKey
+version: 1.0.0
+icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png

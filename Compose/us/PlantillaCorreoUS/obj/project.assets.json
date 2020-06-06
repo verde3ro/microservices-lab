@@ -6774,24 +6774,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/jorgeheredia/.nuget/packages/": {}
+    "C:\\Users\\edwin.rubio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jorgeheredia/IdeaProjects/microservices-lab/Compose/us/PlantillaCorreoUS/PlantillaCorreoUS.csproj",
+      "projectUniqueName": "C:\\Users\\edwin.rubio\\source\\repos\\repo-itehl\\microservices-lab\\Compose\\us\\PlantillaCorreoUS\\PlantillaCorreoUS.csproj",
       "projectName": "PlantillaCorreoUS",
-      "projectPath": "/Users/jorgeheredia/IdeaProjects/microservices-lab/Compose/us/PlantillaCorreoUS/PlantillaCorreoUS.csproj",
-      "packagesPath": "/Users/jorgeheredia/.nuget/packages/",
-      "outputPath": "/Users/jorgeheredia/IdeaProjects/microservices-lab/Compose/us/PlantillaCorreoUS/obj/",
+      "projectPath": "C:\\Users\\edwin.rubio\\source\\repos\\repo-itehl\\microservices-lab\\Compose\\us\\PlantillaCorreoUS\\PlantillaCorreoUS.csproj",
+      "packagesPath": "C:\\Users\\edwin.rubio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\edwin.rubio\\source\\repos\\repo-itehl\\microservices-lab\\Compose\\us\\PlantillaCorreoUS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jorgeheredia/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\edwin.rubio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6855,6 +6857,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.0.3, 3.0.3]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6863,7 +6883,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

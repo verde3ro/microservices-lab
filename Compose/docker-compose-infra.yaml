@@ -47,15 +47,7 @@ services:
       - "8500:8500"
     networks:
       - FortNet
-  kafka-client:
-    container_name: kafka-client
-    image: confluentinc/cp-kafka:5.4.1
-    depends_on:
-      - kafka
-      - zookeeper
-    command: sh -c "exec tail -f /dev/null"
-    networks:
-      - FortNet
+
   #Fin infra
 
 networks:
