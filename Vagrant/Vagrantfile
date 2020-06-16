@@ -15,9 +15,26 @@ Vagrant.configure("2") do |config|
 
         node.vm.network "public_network", ip:"186.165.25.25",  bridge: "Intel(R) Dual Band Wireless-AC 3165"
         node.vm.provision :shell, inline: <<-SHELL
+          sudo apt --fix-broken install -y
+          sudo apt-get install -y apt-transport-https  ca-certificates  curl  gnupg-agent  software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo apt-key fingerprint 0EBFCD88
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
+          sudo apt-get update -y
+          sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+          sudo usermod -aG docker vagrant
+          
+          sudo apt-get install -y conntrack
+          
+          sudo apt-get update && sudo apt-get install -y apt-transport-https
+          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+          sudo apt-get update
+          sudo apt-get install -y kubectl
+
           sudo snap install helm --classic
           git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
-          docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yaml up -d
+          #docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yaml up -d
         SHELL
     end
 #Puertos APIs
