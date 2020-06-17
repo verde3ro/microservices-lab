@@ -38,6 +38,12 @@ Vagrant.configure("2") do |config|
           #Instalacion de helm
           sudo snap install helm --classic
 
+          #Install mvn 
+          sudo apt install maven -y
+
+          #install dotnet 
+          sudo snap install dotnet-sdk -y
+
           #Descarga del repositorio
           git clone https://itehllabs:L4bs1th3l2020*.@github.com/repo-itehl/microservices-lab.git
           docker-compose -f /home/vagrant/microservices-lab/Compose/docker-compose-infra.yaml up -d
