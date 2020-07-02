@@ -38,7 +38,7 @@ public class CorreoUSAmbassadorController {
         HttpEntity<Map<String, String>> request =
                 new HttpEntity<Map<String, String>>(params,headers);
 
-        restTemplate.exchange("https://azure-function-email-1587584108101.azurewebsites.net/api/emailus/?to={to}&message={message}", HttpMethod.POST, request, String.class, params );
+        restTemplate.exchange("https://azure-function-email-1593648448112.azurewebsites.net/api/emailus/?to={to}&message={message}", HttpMethod.POST, request, String.class, params );
 
         LOG.info("End Ambassador enviarMensaje");
 
