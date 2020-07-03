@@ -24,7 +24,7 @@ kubernetes:
         memory: "64Mi"
       limits:
         memory: "300Mi"
-  enbassador:
+  ambassador:
     container:
       port: 1008
     image:
