@@ -14,8 +14,9 @@ import org.springframework.web.client.RestTemplate;
 
 public class EnviarCorreoPlantillaREST {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EnviarCorreoPlantillaREST.class);
+   private static final Logger LOG = LoggerFactory.getLogger(EnviarCorreoPlantillaREST.class);
     RestTemplate restTemplate = new RestTemplate();
+    ResponseEntity<Boolean> restExchange;
 
     public boolean enviarCorre(CorreoDTO correoDTO){
 
@@ -24,9 +25,14 @@ public class EnviarCorreoPlantillaREST {
                 "Itehl Digital.";
 
         correoDTO.setMensaje(mensaje);
+    try {
 
-        ResponseEntity<Boolean> restExchange = restTemplate.postForEntity("http://itehl-us-correo-api:1008/us/email/v1", correoDTO, Boolean.class);
+        restExchange = restTemplate.postForEntity("http://itehl-us-correo-api:1008/us/email/v1", correoDTO, Boolean.class);
 
+    }catch (HttpServerErrorException.InternalServerError error){
+        //Se hace el llamado por localhost cuando se despliega el servicio como parte del mismo POD
+        restExchange = restTemplate.postForEntity("http://localhost:1008/us/email/v1", correoDTO, Boolean.class);
+    }
 
        return restExchange.getBody().booleanValue();
 
