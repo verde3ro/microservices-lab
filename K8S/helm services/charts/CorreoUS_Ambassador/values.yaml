@@ -1,0 +1,28 @@
+#Variables referentes a kubernetes
+kubernetes:
+  api:
+  #imagen que sera utilizada en el despliegue
+    image:
+      repository: jorgeheredia/microservices-lab
+      tag: "us-correo"
+      version: "-v1.0.0"
+    #cantidad de replicas a utilizar
+    replicaCount: 1
+    service:
+      type: ClusterIP
+      port: 1008
+    container:
+      port: 1008
+    ingress:
+    #url desde la cual sera accedida el api
+      host: us.correo
+    #nombre global del aplicativo
+    nombre_global: us-correo
+    #Recursos que consume el deployment
+    resources:
+      requests:
+        memory: "64Mi"
+      limits:
+        memory: "300Mi"
+global:
+  namespace: default
