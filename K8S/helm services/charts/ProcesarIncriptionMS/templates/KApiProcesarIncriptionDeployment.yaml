@@ -33,16 +33,16 @@ spec:
           name: {{ .Values.kubernetes.api.nombre_global }} #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: {{ .Values.kubernetes.api.container.port }}
-        - image: {{ .Values.kubernetes.enbassador.image.repository }}:{{.Values.kubernetes.enbassador.image.tag}}{{.Values.kubernetes.enbassador.image.version }} #Se declara la ubicacion del repositorio y la imagen a utilizar
+        - image: {{ .Values.kubernetes.ambassador.image.repository }}:{{.Values.kubernetes.ambassador.image.tag}}{{.Values.kubernetes.ambassador.image.version }} #Se declara la ubicacion del repositorio y la imagen a utilizar
           resources:
             requests:
-              memory: {{.Values.kubernetes.enbassador.resources.requests.memory}} #El requerimiento de memoria para el pod
+              memory: {{.Values.kubernetes.ambassador.resources.requests.memory}} #El requerimiento de memoria para el pod
             limits:
-              memory: {{.Values.kubernetes.enbassador.resources.limits.memory}} # El limite de memoria con la cual va trabajar
+              memory: {{.Values.kubernetes.ambassador.resources.limits.memory}} # El limite de memoria con la cual va trabajar
           imagePullPolicy: Always
-          name: {{ .Values.kubernetes.enbassador.nombre_global }} #nombre base que tendra el contenedor dentro del pod
+          name: {{ .Values.kubernetes.ambassador.nombre_global }} #nombre base que tendra el contenedor dentro del pod
           ports:
-            - containerPort: {{ .Values.kubernetes.enbassador.container.port }}
+            - containerPort: {{ .Values.kubernetes.ambassador.container.port }}
       imagePullSecrets:
         - name: dockerhubkey
       restartPolicy: Always
