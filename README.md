@@ -13,6 +13,6 @@ _Contiene los artefactos para el aprovisionamiento del cluster en la nube de Azu
 
 **Carpeta K8S:** 
 
-_Contiene los artefactos para la parte de trabajo con los objetos de Kubernetes en la nube de Azure._
+_Contiene los artefactos para la parte de trabajo con los objetos de Kubernetes._
 
 Enjoy it. Jorge Heredia
