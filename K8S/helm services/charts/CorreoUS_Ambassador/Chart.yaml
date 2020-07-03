@@ -1,6 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: Helm chart Curso
-name: Curso
-version: 1.0.0
-icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
