@@ -9,7 +9,7 @@ kubernetes:
     #cantidad de replicas a utilizar
     replicaCount: 1
     service:
-      type: ClusterIP
+      type: NodePort
       port: 1005
     container:
       port: 1005
@@ -18,33 +18,19 @@ kubernetes:
       host: es.cliente
     #nombre global del aplicativo
     nombre_global: es-cliente
-    #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "300Mi"
-
   db:
     image:
       repository: mongo
       tag: "4.0.14"
     service:
-      type: LoadBalancer
+      type: NodePort
       port: 27017
     container:
       port: 27017
     #nombre global del aplicativo
     nombre_global: db-cliente
-    #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "100Mi"
-      limits:
-        memory: "600Mi"
     database_name: clientesDB
-    collection_name: Agenda
-    
+    collection_name: Clientes
 
 global:
   namespace: default
