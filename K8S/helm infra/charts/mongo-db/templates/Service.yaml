@@ -5,10 +5,11 @@ metadata:
   labels:
     name: mongo
 spec:
+  type: LoadBalancer #tipo de servicio que va a desplegar
   ports:
-    - port: 27017
+    - name: "http"
+      port: 27017 #puerto de conexion del pod
       targetPort: 27017
-  clusterIP: None
   selector:
     role: mongo
 
