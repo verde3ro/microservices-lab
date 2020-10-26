@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
+  labels:
+    name: mongo
 spec:
   serviceName: mongodb-service
   replicas: 1
@@ -11,9 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        role: mongo
-        environment: test
-        replicaset: MainRepSet
+        name: mongo
     spec:
       terminationGracePeriodSeconds: 10
       volumes:
