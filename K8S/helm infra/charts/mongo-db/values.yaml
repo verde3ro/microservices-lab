@@ -1,5 +1,0 @@
-name: mongo
-portExt: 30777
-annotations: { 
-    volume.beta.kubernetes.io/storage-class: "nfs-client"
-  }
