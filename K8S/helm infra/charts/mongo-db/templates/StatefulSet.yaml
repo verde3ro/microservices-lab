@@ -18,6 +18,8 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: mongo-container
+          securityContext:
+            runAsUser: 0
           image: mongo
           command:
           - /bin/chown
