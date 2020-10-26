@@ -22,10 +22,10 @@ spec:
             secretName: shared-bootstrap-data
             defaultMode: 256
       containers:
-        - name: mongod-container
+        - name: mongo-container
           image: mongo
           command:
-            - "mongod"
+            - "mongo"
             - "--bind_ip"
             - "0.0.0.0"
             - "--replSet"
