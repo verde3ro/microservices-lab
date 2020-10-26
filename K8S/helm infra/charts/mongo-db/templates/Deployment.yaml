@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo #Campo obligatorio para identificar el deployment
+  labels:
+    tipomanager: Kubernetes
+    version: "v1"
+    service_model: entity
+    tier: backend
+    env: dev
+  annotations:
+    desc: Unidad que nos permite gestionar de mejor manera los pods
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo  #nombre base que tendra el pod que tiene que coincidir con el templates.app
+  template:
+    metadata:
+      labels:
+        version: "v1"
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          securityContext:
+            runAsUser: 0
+          image: mongo:4.0.14
+          command:
+          - /bin/chown
+          - -R
+          - "1000"  
+          - /data/db
+          ports:
+          - name: mongo
+            containerPort: 27017
+          volumeMounts:
+          - name: {{ .Values.name }}{{ .Release.Name }}
+            mountPath: /data/db
+      volumes:
+      - name: {{ .Values.name }}{{ .Release.Name }}
+        persistentVolumeClaim:
+          claimName: mongo-pvc
+      imagePullSecrets:
+        - name: dockerhubkey
+      restartPolicy: Always
