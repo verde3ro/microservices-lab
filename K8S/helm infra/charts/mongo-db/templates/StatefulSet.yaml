@@ -20,10 +20,10 @@ spec:
         - name: mongo-container
           image: mongo
           command:
-            - /bin/chown
-            - -R
-            - "1000"
-            - /data/db
+          - /bin/chown
+          - -R
+          - "1000"
+          - /data/db
           ports:
             - containerPort: 27017
           volumeMounts:
