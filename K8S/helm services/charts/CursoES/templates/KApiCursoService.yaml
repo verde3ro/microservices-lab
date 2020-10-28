@@ -7,8 +7,11 @@ metadata:
 spec:
   type: {{ .Values.kubernetes.api.service.type }} #tipo de servicio que va a desplegar
   ports:
-    - name: "http"
+    - name: "api"
       port: {{ .Values.kubernetes.api.service.port }} #puerto de conexion del pod
       targetPort: {{ .Values.kubernetes.api.container.port }}
+    - name: "db"
+      port: {{ .Values.kubernetes.db.service.port }} #puerto de conexion del pod
+      targetPort: {{ .Values.kubernetes.db.container.port }}
   selector:
     app: {{ .Values.kubernetes.api.nombre_global }}-pod #el nombre del servicio al que se le hara conexion
