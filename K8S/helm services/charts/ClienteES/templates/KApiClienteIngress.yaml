@@ -18,7 +18,3 @@ spec:
         backend:
           serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
           servicePort: {{ .Values.kubernetes.api.service.port }}
-      - path: /mongo
-        backend:
-          serviceName: {{ .Values.kubernetes.api.nombre_global }}-mongo-svc #El servicio al que se hara conexion el ingress
-          servicePort: 27017

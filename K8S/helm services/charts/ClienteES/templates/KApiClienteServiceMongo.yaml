@@ -9,7 +9,7 @@ metadata:
   annotations:
     desc:  Unidad que nos permite acceder a los pods atravez de la red
 spec:
-  type: {{ .Values.kubernetes.api.service.type }} #tipo de servicio que va a desplegar
+  type: NodePort #tipo de servicio que va a desplegar
   ports:
     - name: "http"
       port: 27017 #puerto de conexion del pod
