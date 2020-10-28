@@ -23,7 +23,7 @@ kubernetes:
       repository: mongo
       tag: "4.0.14"
     service:
-      type: LoabBalancer
+      type: LoadBalancer
       port: 27017
     container:
       port: 27017
