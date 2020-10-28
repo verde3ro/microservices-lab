@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: {{ .Values.kubernetes.api.nombre_global }}
+    name: {{ .Values.kubernetes.api.nombre_global }}-mongo
     tipomanager: Kubernetes
   name: {{ .Values.kubernetes.api.nombre_global }}-svc #nombre del servicio
   namespace: {{.Values.global.namespace}} #namespace donde sera instalado este servicio
