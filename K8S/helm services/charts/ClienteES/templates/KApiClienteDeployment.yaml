@@ -2,16 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.kubernetes.api.nombre_global }}-pod #Campo obligatorio para identificar el deployment
-  namespace: {{.Values.global.namespace}} #namespace donde se instalara este deployment
   labels:
-    tipomanager: Kubernetes
     version: "v1"
     service_model: entity
     tier: backend
     env: dev
     app: {{ .Values.kubernetes.api.nombre_global }}
-  annotations:
-    desc: Unidad que nos permite gestionar de mejor manera los pods
 spec:
   replicas: {{ .Values.kubernetes.api.replicaCount }}
   selector:
