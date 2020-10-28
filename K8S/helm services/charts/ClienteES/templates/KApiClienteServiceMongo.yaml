@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: {{ .Values.kubernetes.api.nombre_global }}-mongo
+    name: {{ .Values.kubernetes.api.nombre_global }}
     tipomanager: Kubernetes
-  name: {{ .Values.kubernetes.api.nombre_global }}-svc #nombre del servicio
+  name: {{ .Values.kubernetes.api.nombre_global }}-mongo-svc #nombre del servicio
   namespace: {{.Values.global.namespace}} #namespace donde sera instalado este servicio
   annotations:
     desc:  Unidad que nos permite acceder a los pods atravez de la red
