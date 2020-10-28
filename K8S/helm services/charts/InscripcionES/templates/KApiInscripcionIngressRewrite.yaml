@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: {{ .Values.kubernetes.api.nombre_global }}-ingress-rw #la interfaz de conexion con kubernetes
-  namespace: {{.Values.global.namespace}}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /ms/consultarinscripciones/v1/consultar
 spec:

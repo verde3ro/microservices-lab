@@ -2,16 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.kubernetes.api.nombre_global }}-pod #Campo obligatorio para identificar el deployment
-  namespace: {{.Values.global.namespace}} #namespace donde se instalara este deployment
   labels:
-    tipomanager: Kubernetes
     version: "v1"
     service_model: entity
     tier: backend
     env: dev
     app: {{ .Values.kubernetes.api.nombre_global }}
-  annotations:
-    desc: Unidad que nos permite gestionar de mejor manera los pods
 spec:
   replicas: {{ .Values.kubernetes.api.replicaCount }}
   selector:
@@ -25,23 +21,10 @@ spec:
     spec:
       containers:
         - image: {{ .Values.kubernetes.api.image.repository }}:{{.Values.kubernetes.api.image.tag}}{{.Values.kubernetes.api.image.version }} #Se declara la ubicacion del repositorio y la imagen a utilizar
-          resources:
-            requests:
-              memory: {{.Values.kubernetes.api.resources.requests.memory}} #El requerimiento de memoria para el pod
-            limits:
-              memory: {{.Values.kubernetes.api.resources.limits.memory}} # El limite de memoria con la cual va trabajar
-          imagePullPolicy: Always
           name: {{ .Values.kubernetes.api.nombre_global }} #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: {{ .Values.kubernetes.api.container.port }}
         - image: {{ .Values.kubernetes.db.image.repository }}:{{ .Values.kubernetes.db.image.tag }} #Se declara la ubicacion del repositorio y la imagen a utilizar
-          securityContext:
-            runAsUser: 0
-          resources:
-            requests:
-              memory: {{.Values.kubernetes.db.resources.requests.memory}} #El requerimiento de memoria para el pod
-            limits:
-              memory: {{.Values.kubernetes.db.resources.limits.memory}} # El limite de memoria con la cual va trabajar
           name: mongo
           ports:
             - name: mongo

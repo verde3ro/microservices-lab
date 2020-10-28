@@ -18,12 +18,6 @@ kubernetes:
       host: ms.procesarinscription
     #nombre global del aplicativo
     nombre_global: ms-procesarinscription
-    #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "300Mi"
   ambassador:
     container:
       port: 1008
@@ -32,11 +26,7 @@ kubernetes:
       tag: "us-correo"
       version: "-v1.0.0"
     nombre_global: us-correo
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "300Mi"
+
 global:
   namespace: default
 

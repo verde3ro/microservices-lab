@@ -3,7 +3,9 @@ kind: Service
 metadata:
   labels:
     name: {{ .Values.kubernetes.api.nombre_global }}
-  name: {{ .Values.kubernetes.api.nombre_global }}-svc #nombre del servicio
+    tipomanager: Kubernetes
+  name: {{ .Values.kubernetes.api.nombre_global }}-mongo-svc #nombre del servicio
+  namespace: {{.Values.global.namespace}} #namespace donde sera instalado este servicio
 spec:
   type: {{ .Values.kubernetes.api.service.type }} #tipo de servicio que va a desplegar
   ports:

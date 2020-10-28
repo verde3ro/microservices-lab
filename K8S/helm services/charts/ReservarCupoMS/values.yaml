@@ -9,7 +9,7 @@ kubernetes:
     #cantidad de replicas a utilizar
     replicaCount: 1
     service:
-      type: ClusterIP
+      type: LoadBalancer
       port: 1002
     container:
       port: 1002
@@ -19,31 +19,20 @@ kubernetes:
     #nombre global del aplicativo
     nombre_global: ms-reservarcupo
     #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "300Mi"
   db:
     image:
       repository: mongo
       tag: "4.0.14"
     service:
       type: LoadBalancer
-      port: 27018
+      port: 27017
     container:
       port: 27017
     #nombre global del aplicativo
     nombre_global: db-reservarcupo
     #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "100Mi"
-      limits:
-        memory: "600Mi"
     database_name: cuposDB
-    collection_name: Agenda
-
+    collection_name: Cupos
 
 global:
   namespace: default

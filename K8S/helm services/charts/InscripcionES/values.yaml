@@ -9,7 +9,7 @@ kubernetes:
     #cantidad de replicas a utilizar
     replicaCount: 1
     service:
-      type: ClusterIP
+      type: LoadBalancer
       port: 1003
     container:
       port: 1003
@@ -18,32 +18,19 @@ kubernetes:
       host: es.inscripcion
     #nombre global del aplicativo
     nombre_global: es-inscripcion
-    #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "64Mi"
-      limits:
-        memory: "300Mi"
   db:
     image:
       repository: mongo
       tag: "4.0.14"
     service:
       type: LoadBalancer
-      port: 27020
+      port: 27017
     container:
       port: 27017
     #nombre global del aplicativo
     nombre_global: db-incripcion
-    #Recursos que consume el deployment
-    resources:
-      requests:
-        memory: "100Mi"
-      limits:
-        memory: "600Mi"
-    database_name: inscripcionesDB 
-    collection_name: Agenda
-    
+    database_name: inscripcionesDB
+    collection_name: Inscripciones
 
 global:
   namespace: default

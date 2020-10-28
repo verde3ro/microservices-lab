@@ -3,11 +3,7 @@ kind: Service
 metadata:
   labels:
     name: {{ .Values.kubernetes.api.nombre_global }}
-    tipomanager: Kubernetes
   name: {{ .Values.kubernetes.api.nombre_global }}-svc #nombre del servicio
-  namespace: {{.Values.global.namespace}} #namespace donde sera instalado este servicio
-  annotations:
-    desc:  Unidad que nos permite acceder a los pods atravez de la red
 spec:
   type: {{ .Values.kubernetes.api.service.type }} #tipo de servicio que va a desplegar
   ports:
