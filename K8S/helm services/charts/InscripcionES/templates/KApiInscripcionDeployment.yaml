@@ -24,6 +24,7 @@ spec:
           name: {{ .Values.kubernetes.api.nombre_global }} #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: {{ .Values.kubernetes.api.container.port }}
+          imagePullPolicy: Always
         - image: {{ .Values.kubernetes.db.image.repository }}:{{ .Values.kubernetes.db.image.tag }} #Se declara la ubicacion del repositorio y la imagen a utilizar
           name: mongo
           ports:
