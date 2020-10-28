@@ -30,7 +30,7 @@ kubernetes:
     #nombre global del aplicativo
     nombre_global: db-consulinscri
     database_name: inscripcionesReplicaDB
-    collection_name: Agenda
+    collection_name: Inscripciones
     
 global:
   namespace: default
