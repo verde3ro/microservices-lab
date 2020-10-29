@@ -29,6 +29,7 @@ spec:
           name: {{ .Values.kubernetes.ambassador.nombre_global }} #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: {{ .Values.kubernetes.ambassador.container.port }}
+          imagePullPolicy: Always
       imagePullSecrets:
         - name: dockerhubkey
       restartPolicy: Always
