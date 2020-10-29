@@ -20,7 +20,7 @@ public class ClienteREST {
 
         ResponseEntity<ClienteDTO> restExchange =
                 restTemplate.exchange(
-                        "http://itehl-es-cliente-api:1005/es/cliente/v1/{idCliente}",
+                        "http://es-cliente-svc:1005/es/cliente/v1/{idCliente}",
                         HttpMethod.GET,
                         null, ClienteDTO.class, idCliente);
 

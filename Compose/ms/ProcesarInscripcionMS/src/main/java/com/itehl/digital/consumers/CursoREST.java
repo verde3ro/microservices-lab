@@ -19,7 +19,7 @@ public class CursoREST {
 
         ResponseEntity<CursoDTO> restExchange =
                 restTemplate.exchange(
-                        "http://itehl-es-curso-api:1004/es/curso/v1/{idCurso}",
+                        "http://es-curso-svc:1004/es/curso/v1/{idCurso}",
                         HttpMethod.GET,
                         null, CursoDTO.class, idCurso);
 

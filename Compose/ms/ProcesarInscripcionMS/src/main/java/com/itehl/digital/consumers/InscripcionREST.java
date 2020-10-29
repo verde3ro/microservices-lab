@@ -28,7 +28,7 @@ public class InscripcionREST {
                 new HttpEntity<Map<String, String>>(body,headers);
 
         ResponseEntity<Boolean> restExchange = restTemplate.exchange(
-                "http://itehl-es-inscripcion-api:1003/es/inscripcion/v1/aprobar", HttpMethod.PUT, request, Boolean.class);
+                "http://es-inscripcion-svc:1003/es/inscripcion/v1/aprobar", HttpMethod.PUT, request, Boolean.class);
 
 
     }

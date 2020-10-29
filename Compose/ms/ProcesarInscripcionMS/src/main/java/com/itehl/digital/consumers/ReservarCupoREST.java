@@ -35,7 +35,7 @@ public class ReservarCupoREST {
                 new HttpEntity<Map<String, String>>(body,headers);
 
         ResponseEntity<Boolean> restExchange = restTemplate.exchange(
-                "http://itehl-ms-reservarcupo-api:1002/ms/reservarcupo/v1", HttpMethod.POST, request, Boolean.class);
+                "http://ms-reservarcupo-svc:1002/ms/reservarcupo/v1", HttpMethod.POST, request, Boolean.class);
 
 
         return restExchange.getBody().booleanValue();
