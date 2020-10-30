@@ -27,7 +27,7 @@ spec:
             - containerPort: 1005
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /health
               port: 1005
             initialDelaySeconds: 3
             periodSeconds: 3
