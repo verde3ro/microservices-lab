@@ -5,14 +5,10 @@ Los artefactos del laboratorio están organizados de la sisguiente forma:
 
 **Carpeta Compose:** 
 
-_Contiene  los artefactos de código fuente, docker files y docker compose para la parte de trabajo On-Premise._
-
-**Carpeta IaC:** 
-
-_Contiene los artefactos para el aprovisionamiento del cluster en la nube de Azure._
+_Contiene  los artefactos del código fuente.
 
 **Carpeta K8S:** 
 
-_Contiene los artefactos para la parte de trabajo con los objetos de Kubernetes._
+_Contiene los artefactos utilizados en el laboratorio con Kubernetes.
 
 Enjoy it. Jorge Heredia
