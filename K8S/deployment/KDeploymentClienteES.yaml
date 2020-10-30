@@ -30,6 +30,12 @@ spec:
           ports:
             - name: mongo-cliente
               containerPort: 27017
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 1005
+            initialDelaySeconds: 3
+            periodSeconds: 3
       imagePullSecrets:
         - name: dockerhubkey
       restartPolicy: Always
