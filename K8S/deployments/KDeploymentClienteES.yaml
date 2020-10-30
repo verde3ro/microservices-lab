@@ -2,16 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: es-cliente-pod #Campo obligatorio para identificar el deployment
-  namespace: default #namespace donde se instalara este deployment
   labels:
-    tipomanager: Kubernetes
     version: "v1"
     service_model: entity
     tier: backend
     env: dev
     app: cliente
-  annotations:
-    desc: Unidad que nos permite gestionar de mejor manera los pods
 spec:
   replicas: 2
   selector:

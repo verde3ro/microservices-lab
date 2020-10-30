@@ -3,7 +3,6 @@ kind: Service
 metadata:
   labels:
     name: es-cliente
-    tipomanager: Kubernetes
   name: es-cliente-svc #nombre del servicio
 spec:
   type: LoadBalancer #tipo de servicio que va a desplegar

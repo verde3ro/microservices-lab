@@ -1,9 +1,0 @@
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\EnviarCorreoPlantillaMS.csprojAssemblyReference.cache
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\staticwebassets\EnviarCorreoPlantillaMS.StaticWebAssets.Manifest.cache
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\staticwebassets\EnviarCorreoPlantillaMS.StaticWebAssets.xml
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\EnviarCorreoPlantillaMS.AssemblyInfoInputs.cache
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\EnviarCorreoPlantillaMS.AssemblyInfo.cs
-C:\Users\mateo\Documents\Laboratorio\LaboratorioMicroServicios\EnviarCorreoPlantillaMS\obj\Debug\netcoreapp3.1\EnviarCorreoPlantillaMS.RazorTargetAssemblyInfo.cache
