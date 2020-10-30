@@ -25,17 +25,17 @@ spec:
           name: es-cliente #nombre base que tendra el contenedor dentro del pod
           ports:
             - containerPort: 1005
-        - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
-          name: mongo
-          ports:
-            - name: mongo-cliente
-              containerPort: 27017
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 1005
             initialDelaySeconds: 3
             periodSeconds: 3
+        - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
+          name: mongo
+          ports:
+            - name: mongo-cliente
+              containerPort: 27017
       imagePullSecrets:
         - name: dockerhubkey
       restartPolicy: Always
