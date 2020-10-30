@@ -8,23 +8,11 @@ metadata:
 spec:
   containers:
     - image: jorgeheredia/microservices-lab:es-cliente-v1.0.0 #Se declara la ubicacion del repositorio y la imagen a utilizar
-      resources:
-        requests:
-          memory: 64Mi #El requerimiento de memoria para el pod
-        limits:
-          memory: 300Mi # El limite de memoria con la cual va trabajar
       imagePullPolicy: Always
       name: es-cliente #nombre base que tendra el contenedor dentro del pod
       ports:
         - containerPort: 1005
     - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
-      securityContext:
-        runAsUser: 0
-      resources:
-        requests:
-          memory: 100Mi #El requerimiento de memoria para el pod
-        limits:
-          memory: 600Mi # El limite de memoria con la cual va trabajar
       name: mongo-cliente
       ports:
         - name: mongo-cliente

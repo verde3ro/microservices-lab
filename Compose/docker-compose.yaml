@@ -109,39 +109,6 @@ services:
     networks:
       - compose_FortNet
 
-  #Microservicio EnviarCorreoPlantillaMS
-  itehl.ms-enviarcorreoplantilla:
-    container_name: itehl-ms-enviarcorreo-api
-    image: itehl/ms-enviarcorreoplantilla
-    build:
-      context: ./ms/EnviarCorreoPlantillaMS/
-      dockerfile: ./Dockerfile
-    environment:
-      - CONSUL=http://consul:8500/
-    ports:
-      - "1006:1006"
-    networks:
-      - compose_FortNet
-
-  #Servicio de Utilidad PlantillaCorreoUS
-  itehl.us-plantillacorreo:
-    image: itehl/us-plantillacorreo
-    build:
-      context: ./us/PlantillaCorreoUS/
-      dockerfile: ./Dockerfile
-    environment:
-      - CONNECTION_STRING=mongodb://mongo-infra:27017/admin
-      - CONSUL=http://consul:8500/
-    #container_name: itehl-us-plantillacorreo-api
-    depends_on:
-      - mongo.db
- #   ports:
- #     - "1010-1014:1007"
-    networks:
-      - compose_FortNet
-
-
-
   mongo.db:
     container_name: mongo-infra
     image: mongo:latest
