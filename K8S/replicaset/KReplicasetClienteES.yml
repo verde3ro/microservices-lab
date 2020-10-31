@@ -16,8 +16,10 @@ spec:
         app: es-cliente
     spec:
       containers:
-      - name: es-cliente
-        image: jorgeheredia/microservices-lab:es-cliente-v1.0.0
-      - name: mongo-cliente
-        image: mongo:4.0.14
+        - name: es-cliente
+          image: jorgeheredia/microservices-lab:es-cliente-v1.0.0
+        - name: mongo-cliente
+          image: mongo:4.0.14
+      imagePullSecrets:
+        - name: dockerhubkey
 
