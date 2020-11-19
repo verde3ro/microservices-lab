@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.kubernetes.api.nombre_global }}-ingress #la interfaz de conexion con kubernetes
+spec:
+  rules:
+  - host: {{ .Values.kubernetes.api.ingress.host }} #dominio de conexion con kubernetes
+    http:
+      paths:
+      - path: /es/curso/v1
+        backend:
+          serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
+          servicePort: {{ .Values.kubernetes.api.service.port }}
