@@ -9,7 +9,7 @@ kubernetes:
     #cantidad de replicas a utilizar
     replicaCount: 1
     service:
-      type: LoadBalancer
+      type: NodePort
       port: 1004
     container:
       port: 1004
@@ -23,7 +23,7 @@ kubernetes:
       repository: mongo
       tag: "4.0.14"
     service:
-      type: LoadBalancer
+      type: NodePort
       port: 27017
     container:
       port: 27017
