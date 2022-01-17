@@ -1,0 +1,24 @@
+#Variables referentes a kubernetes
+kubernetes:
+  api:
+  #imagen que sera utilizada en el despliegue
+    image:
+      repository: jorgeheredia/microservices-lab
+      tag: "us-email"
+      version: "-v1.0.0"
+    #cantidad de replicas a utilizar
+    replicaCount: 1
+    service:
+      type: NodePort
+      port: 1010
+    container:
+      port: 1010
+    ingress:
+    #url desde la cual sera accedida el api
+      host: us.email
+    #nombre global del aplicativo
+    nombre_global: us-email
+global:
+  namespace: default
+
+
