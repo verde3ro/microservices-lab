@@ -1,0 +1,69 @@
+
+###
+
+POST http://es.cliente/es/cliente/v1
+Content-Type: application/json
+
+{
+  "idCliente":"1",
+  "nombres":"Jorge",
+  "apellidos":"Heredia",
+  "profesion":"Arquitecto Empresarial",
+  "email":"jorge.heredia@itehl.co"
+}
+###
+
+POST http://es.course/es/curso/v1
+Content-Type: application/json
+{
+  "idCurso":"1",
+  "nombre":"Arquitecto Microservicios",
+  "descripcion":"Diseño arquitectura microservicios",
+  "modalidad":"OnLine"
+}
+
+POST http://es.inscripcion/es/inscripcion/v1/crear
+Content-Type: application/json
+{
+  "idInscripcion":"1",
+  "idCurso":"1",
+  "idCliente":"1",
+  "curso":"Arquitecto Microservicios",
+  "nombre":"Curso Online Micro",
+  "estado":"rechazada"
+}
+
+
+### Rechazar la inscripcion
+POST http://es.inscripcion/es/inscripcion/v1/rechazar
+Content-Type: application/json
+{
+  "idInscripcion":"1"
+}
+
+
+### Aprobar la inscripcion
+POST http://es.inscripcion/es/inscripcion/v1/aprobar
+Content-Type: application/json
+{
+  "idInscripcion":"1"
+}
+
+
+### Actualizar la infromacion de la inscripcion
+POST http://es.inscripcion/es/inscripcion/v1/actualizar
+Content-Type: application/json
+{
+  "idInscripcion":"1",
+  "idCurso":"1",
+  "idCliente":"1",
+  "curso":"Arquitecto Itehl Microservicios",
+  "nombre":"Curso Online Microservicios",
+  "estado":"aprobada"
+}
+
+
+### Listar todas las inscripciones
+GET http://es.inscripcion/es/inscripcion/v1
+
+
