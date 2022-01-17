@@ -1,35 +1,31 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment #Tipo de objeto de Kubernetes
 metadata:
-  name: es-cliente-pod #Campo obligatorio para identificar el deployment
+  name: es-cliente-pod #Nombre del Deployment
   labels:
-    version: "v1"
-    service_model: entity
-    tier: backend
-    env: dev
     app: cliente
+    tier: backend
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: es-cliente  #nombre base que tendra el pod que tiene que coincidir con el templates.app
+      app: es-cliente  #Define la relación del ReplicaSet con el POD que se debe monitorear
   template:
     metadata:
       labels:
-        version: "v1"
-        app: es-cliente
+        app: es-cliente #Nombre del POD
     spec:
       containers:
-        - image: jorgeheredia/microservices-lab:es-cliente-v1.0.0 #Se declara la ubicacion del repositorio y la imagen a utilizar
+        - image: jorgeheredia/microservices-lab:es-cliente-v1.0.0 #Imagen del Servicio
           imagePullPolicy: Always
-          name: es-cliente #nombre base que tendra el contenedor dentro del pod
+          name: es-cliente #Nombre del Contenedor del Servicio
           ports:
             - containerPort: 1005
-        - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
-          name: mongo
+        - image: mongo:4.0.14 #Imagen de MongoDB
+          name: mongo #Nombre del Contenedor de MondoDB
           ports:
             - name: mongo-cliente
               containerPort: 27017
       imagePullSecrets:
-        - name: dockerhubkey
+        - name: dockerhubkey #Nombre del Secret creado para autenticarse a DockerHub
       restartPolicy: Always

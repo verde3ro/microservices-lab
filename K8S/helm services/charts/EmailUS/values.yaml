@@ -13,9 +13,6 @@ kubernetes:
       port: 1010
     container:
       port: 1010
-    ingress:
-    #url desde la cual sera accedida el api
-      host: us.email
     #nombre global del aplicativo
     nombre_global: us-email
 global:

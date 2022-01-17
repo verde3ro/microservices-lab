@@ -33,5 +33,3 @@ kubernetes:
     collection_name: Clientes
 global:
   namespace: default
-
-

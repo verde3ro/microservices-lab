@@ -1,22 +1,23 @@
 apiVersion: v1
-kind: Pod # tipo de artefacto
+kind: Pod #Tipo de objeto de Kubernetes
 metadata:
-  name: es-cliente-pod
-  labels:
+  name: es-cliente-pod #Nombre del POD
+  labels: #Etiquetas que permiten relacionar objetos
     app: es-cliente
-    tier: back-end
+    tier: backend
 spec:
   containers:
-    - image: jorgeheredia/microservices-lab:es-cliente-v1.0.0 #Se declara la ubicacion del repositorio y la imagen a utilizar
+    - image: jorgeheredia/microservices-lab:es-cliente-v1.0.0 #Ubicación del repositorio y la imagen a utilizar
       imagePullPolicy: Always
-      name: es-cliente #nombre base que tendra el contenedor dentro del pod
+      name: es-cliente #Nombre del contenedor dentro del POD
       ports:
-        - containerPort: 1005
-    - image: mongo:4.0.14 #Se declara la ubicacion del repositorio y la imagen a utilizar
+        - containerPort: 1005 #Puerto donde se accederá el servicio
+    - image: mongo:4.0.14 #Se declara la ubicación del repositorio y la imagen a utilizar
       name: mongo-cliente
       ports:
         - name: mongo-cliente
-          containerPort: 27017
+          containerPort: 27017 #Puerto donde se accederá la base de datos
   imagePullSecrets:
-    - name: dockerhubkey
+    - name: dockerhubkey #Nombre del Secret creado para autenticarse a DockerHub
   restartPolicy: Always
+

@@ -1,14 +1,15 @@
 apiVersion: v1
-kind: Service
+kind: Service #Tipo de objeto de Kubernetes
 metadata:
+  name: es-cliente-svc #Nombre del Servicio
   labels:
     name: es-cliente
-  name: es-cliente-svc #nombre del servicio
 spec:
-  type: LoadBalancer #tipo de servicio que va a desplegar
+  type: LoadBalancer #Tipo de servicio
   ports:
     - name: "http"
-      port: 1005 #puerto de conexion del pod
-      targetPort: 1005
+      port: 1005 #Puerto expuesto
+      targetPort: 1005 #Puerto del servicio en el POD
   selector:
-    app: es-cliente #el nombre del servicio al que se le hara conexion
+    app: es-cliente #Relación con el POD al cual se rutea el tráfico
+
