@@ -8,21 +8,25 @@ spec:
     http:
       paths:
         - path: /es/inscripcion/v1/crear
+          pathType: Prefix
           backend:
             service:
               name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
               port: {{ .Values.kubernetes.api.service.port }}
         - path: /es/inscripcion/v1/aprobar
+          pathType: Prefix
           backend:
             service:
               name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
               port: {{ .Values.kubernetes.api.service.port }}
         - path: /es/inscripcion/v1/rechazar
+          pathType: Prefix
           backend:
             service:
               name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
               port: {{ .Values.kubernetes.api.service.port }}
         - path: /es/inscripcion/v1/actualizar
+          pathType: Prefix
           backend:
             service:
               name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
