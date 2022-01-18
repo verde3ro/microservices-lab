@@ -1,15 +1,18 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress #Tipo de objeto de Kubernetes
 metadata:
-  name: {{ .Values.kubernetes.api.nombre_global }}-ingress-rw #la interfaz de conexion con kubernetes
+  name: {{ .Values.kubernetes.api.nombre_global }}-ingress-rw #Nombre del Ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /ms/consultarinscripciones/v1/consultar
+    nginx.ingress.kubernetes.io/rewrite-target: /ms/consultarinscripciones/v1/consultar #Regla de direccionamiento
 spec:
   rules:
-  - host: {{ .Values.kubernetes.api.ingress.host }} #dominio de conexion con kubernetes
+  - host: {{ .Values.kubernetes.api.ingress.host }} #Nombre de dominio a resolver
     http:
       paths:
-      - path: /es/inscripcion/v1
+      - path: /es/inscripcion/v1/consultar
+        pathType: Prefix
         backend:
-          serviceName: ms-consultarins-svc #El servicio al que se hara conexion el ingress
-          servicePort: 1009
+          service:
+            name: ms-consultarins-svc #Nombre del servicio al que se redireccionará la petición
+            port:
+              number: 1009

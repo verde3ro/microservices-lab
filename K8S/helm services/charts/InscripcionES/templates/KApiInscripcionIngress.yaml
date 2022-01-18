@@ -1,25 +1,29 @@
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress #Tipo de objeto de Kubernetes
 metadata:
-  name: {{ .Values.kubernetes.api.nombre_global }}-ingress #la interfaz de conexion con kubernetes
+  name: {{ .Values.kubernetes.api.nombre_global }}-ingress #Nombre del Ingress
 spec:
   rules:
-  - host: {{ .Values.kubernetes.api.ingress.host }} #dominio de conexion con kubernetes
+  - host: {{ .Values.kubernetes.api.ingress.host }} #Nombre de dominio a resolver
     http:
       paths:
-      - path: /es/inscripcion/v1/aprobar
-        backend:
-          serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
-          servicePort: {{ .Values.kubernetes.api.service.port }}
-      - path: /es/inscripcion/v1/rechazar
-        backend:
-          serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
-          servicePort: {{ .Values.kubernetes.api.service.port }}
-      - path: /es/inscripcion/v1/crear
-        backend:
-          serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
-          servicePort: {{ .Values.kubernetes.api.service.port }}
-      - path: /es/inscripcion/v1/actualizar
-        backend:
-          serviceName: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
-          servicePort: {{ .Values.kubernetes.api.service.port }}
+        - path: /es/inscripcion/v1/crear
+          backend:
+            service:
+              name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
+              port: {{ .Values.kubernetes.api.service.port }}
+        - path: /es/inscripcion/v1/aprobar
+          backend:
+            service:
+              name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
+              port: {{ .Values.kubernetes.api.service.port }}
+        - path: /es/inscripcion/v1/rechazar
+          backend:
+            service:
+              name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
+              port: {{ .Values.kubernetes.api.service.port }}
+        - path: /es/inscripcion/v1/actualizar
+          backend:
+            service:
+              name: {{ .Values.kubernetes.api.nombre_global }}-svc #Nombre del servicio al que se redireccionará la petición
+              port: {{ .Values.kubernetes.api.service.port }}

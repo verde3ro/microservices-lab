@@ -1,18 +1,18 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment #Tipo de objeto de Kubernetes
 metadata:
-  name: {{ .Values.kubernetes.api.nombre_global }}-pod #Campo obligatorio para identificar el deployment
-  labels:
+  name: {{ .Values.kubernetes.api.nombre_global }}-pod #Nombre del Deployment
+  labels: #Etiquetas que permiten relacionar objetos
     version: "v1"
     tier: backend
     service_model: Microservice
     env: dev
     app: {{ .Values.kubernetes.api.nombre_global }}
 spec:
-  replicas: {{ .Values.kubernetes.api.replicaCount }}
+  replicas: {{ .Values.kubernetes.api.replicaCount }} #Definición de la cantidad de réplicas del POD
   selector:
     matchLabels:
-      app: {{ .Values.kubernetes.api.nombre_global }}-pod  #nombre base que tendra el pod que tiene que coincidir con el templates.app
+      app: {{ .Values.kubernetes.api.nombre_global }}-pod #Relación del ReplicaSet con el POD
   template:
     metadata:
       labels:
@@ -20,16 +20,16 @@ spec:
         app: {{ .Values.kubernetes.api.nombre_global }}-pod
     spec:
       containers:
-        - image: {{ .Values.kubernetes.api.image.repository }}:{{.Values.kubernetes.api.image.tag}}{{.Values.kubernetes.api.image.version }} #Se declara la ubicacion del repositorio y la imagen a utilizar
-          name: {{ .Values.kubernetes.api.nombre_global }} #nombre base que tendra el contenedor dentro del pod
+        - image: {{ .Values.kubernetes.api.image.repository }}:{{.Values.kubernetes.api.image.tag}}{{.Values.kubernetes.api.image.version }}
+          name: {{ .Values.kubernetes.api.nombre_global }} #Nombre del Contenedor
           ports:
             - containerPort: {{ .Values.kubernetes.api.container.port }}
           imagePullPolicy: Always
-        - image: {{ .Values.kubernetes.ambassador.image.repository }}:{{.Values.kubernetes.ambassador.image.tag}}{{.Values.kubernetes.ambassador.image.version }} #Se declara la ubicacion del repositorio y la imagen a utilizar
-          name: {{ .Values.kubernetes.ambassador.nombre_global }} #nombre base que tendra el contenedor dentro del pod
+        - image: {{ .Values.kubernetes.ambassador.image.repository }}:{{.Values.kubernetes.ambassador.image.tag}}{{.Values.kubernetes.ambassador.image.version }}
+          name: {{ .Values.kubernetes.ambassador.nombre_global }} #Nombre del Contenedor
           ports:
             - containerPort: {{ .Values.kubernetes.ambassador.container.port }}
           imagePullPolicy: Always
       imagePullSecrets:
-        - name: dockerhubkey
+        - name: dockerhubkey  #Nombre del Secret creado para autenticarse a DockerHub
       restartPolicy: Always
