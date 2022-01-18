@@ -12,4 +12,5 @@ spec:
         backend:
           service:
             name: {{ .Values.kubernetes.api.nombre_global }}-svc #El servicio al que se hara conexion el ingress
-            port: {{ .Values.kubernetes.api.service.port }}
+            port:
+              number: {{ .Values.kubernetes.api.service.port }}
