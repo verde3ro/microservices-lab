@@ -1,12 +1,9 @@
-#Variables referentes a kubernetes
 kubernetes:
   api:
-  #imagen que sera utilizada en el despliegue
     image:
       repository: jorgeheredia/microservices-lab
       tag: "ms-procesarinscripcion"
       version: "-v1.0.0"
-    #cantidad de replicas a utilizar
     replicaCount: 1
     service:
       type: ClusterIP
@@ -14,9 +11,7 @@ kubernetes:
     container:
       port: 1001
     ingress:
-    #url desde la cual sera accedida el api
       host: ms.procesarinscription
-    #nombre global del aplicativo
     nombre_global: ms-procesarinscription
   ambassador:
     container:
