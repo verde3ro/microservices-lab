@@ -1,12 +1,9 @@
-#Variables referentes a kubernetes
 kubernetes:
   api:
-  #imagen que sera utilizada en el despliegue
     image:
       repository: jorgeheredia/microservices-lab
       tag: "ms-consultarinscripciones"
       version: "-v1.0.0"
-    #cantidad de replicas a utilizar
     replicaCount: 1
     service:
       type: NodePort
@@ -14,9 +11,7 @@ kubernetes:
     container:
       port: 1009
     ingress:
-    #url desde la cual sera accedida el api
       host: ms.consultarinscripcion
-    #nombre global del aplicativo
     nombre_global: ms-consultarins
   db:
     image:
@@ -27,7 +22,6 @@ kubernetes:
       port: 27017
     container:
       port: 27017
-    #nombre global del aplicativo
     nombre_global: db-consulinscri
     database_name: inscripcionesReplicaDB
     collection_name: Inscripciones
