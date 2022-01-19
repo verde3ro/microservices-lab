@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.kubernetes.api.nombre_global }}-pod #Campo obligatorio para identificar el deployment
+  name: {{ .Values.kubernetes.api.nombre_global }}-pod
   labels:
     version: "v1"
     service_model: utility
@@ -12,7 +12,7 @@ spec:
   replicas: {{ .Values.kubernetes.api.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.kubernetes.api.nombre_global }}-pod  #nombre base que tendrá el pod que tiene que coincidir con el templates.app
+      app: {{ .Values.kubernetes.api.nombre_global }}-pod
   template:
     metadata:
       labels:
@@ -20,8 +20,8 @@ spec:
         app: {{ .Values.kubernetes.api.nombre_global }}-pod
     spec:
       containers:
-        - image: {{ .Values.kubernetes.api.image.repository }}:{{.Values.kubernetes.api.image.tag}}{{.Values.kubernetes.api.image.version }} #Se declara la ubicación del repositorio y la imagen a utilizar
-          name: {{ .Values.kubernetes.api.nombre_global }} #nombre base que tendrá el contenedor dentro del pod
+        - image: {{ .Values.kubernetes.api.image.repository }}:{{.Values.kubernetes.api.image.tag}}{{.Values.kubernetes.api.image.version }}
+          name: {{ .Values.kubernetes.api.nombre_global }}
           ports:
             - containerPort: {{ .Values.kubernetes.api.container.port }}
           imagePullPolicy: Always

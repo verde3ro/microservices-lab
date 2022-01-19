@@ -4,12 +4,12 @@ metadata:
   labels:
     name: {{ .Values.kubernetes.api.nombre_global }}
     tipomanager: Kubernetes
-  name: {{ .Values.kubernetes.api.nombre_global }}-svc #nombre del servicio
+  name: {{ .Values.kubernetes.api.nombre_global }}-svc
 spec:
-  type: {{ .Values.kubernetes.api.service.type }} #tipo de servicio que va a desplegar
+  type: {{ .Values.kubernetes.api.service.type }}
   ports:
     - name: "api"
-      port: {{ .Values.kubernetes.api.service.port }} #puerto de conexión del pod
+      port: {{ .Values.kubernetes.api.service.port }}
       targetPort: {{ .Values.kubernetes.api.container.port }}
   selector:
-    app: {{ .Values.kubernetes.api.nombre_global }}-pod #el nombre del servicio al que se le hará conexión
+    app: {{ .Values.kubernetes.api.nombre_global }}-pod
