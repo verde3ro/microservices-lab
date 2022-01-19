@@ -1,6 +1,4 @@
-
-###
-
+### Crear el cliente
 POST http://es.cliente/es/cliente/v1
 Content-Type: application/json
 
@@ -11,8 +9,8 @@ Content-Type: application/json
   "profesion":"Arquitecto Empresarial",
   "email":"jorge.heredia@itehl.co"
 }
-###
 
+### Crear el curso
 POST http://es.course/es/curso/v1
 Content-Type: application/json
 {
@@ -22,6 +20,7 @@ Content-Type: application/json
   "modalidad":"OnLine"
 }
 
+### Crear la inscripción
 POST http://es.inscripcion/es/inscripcion/v1/crear
 Content-Type: application/json
 {
@@ -33,24 +32,7 @@ Content-Type: application/json
   "estado":"rechazada"
 }
 
-
-### Rechazar la inscripcion
-POST http://es.inscripcion/es/inscripcion/v1/rechazar
-Content-Type: application/json
-{
-  "idInscripcion":"1"
-}
-
-
-### Aprobar la inscripcion
-POST http://es.inscripcion/es/inscripcion/v1/aprobar
-Content-Type: application/json
-{
-  "idInscripcion":"1"
-}
-
-
-### Actualizar la infromacion de la inscripcion
+### Actualizar la información de la inscripción
 POST http://es.inscripcion/es/inscripcion/v1/actualizar
 Content-Type: application/json
 {
@@ -62,8 +44,7 @@ Content-Type: application/json
   "estado":"aprobada"
 }
 
-
 ### Listar todas las inscripciones
-GET http://es.inscripcion/es/inscripcion/v1
+GET http://es.inscripcion/es/inscripcion/v1/consultar
 
 
