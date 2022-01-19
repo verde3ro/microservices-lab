@@ -1,12 +1,9 @@
-#Variables referentes a kubernetes
 kubernetes:
   api:
-  #imagen que sera utilizada en el despliegue
     image:
       repository: jorgeheredia/microservices-lab
       tag: "es-cliente"
       version: "-v1.0.0"
-    #cantidad de replicas a utilizar
     replicaCount: 1
     service:
       type: NodePort
@@ -14,9 +11,7 @@ kubernetes:
     container:
       port: 1005
     ingress:
-    #url desde la cual sera accedida el api
       host: es.cliente
-    #nombre global del aplicativo
     nombre_global: es-cliente
   db:
     image:
@@ -27,7 +22,6 @@ kubernetes:
       port: 27017
     container:
       port: 27017
-    #nombre global del aplicativo
     nombre_global: db-cliente
     database_name: clientesDB
     collection_name: Clientes
