@@ -31,7 +31,6 @@ public class ReservarCupoMSController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public boolean reservarCupo(@RequestBody Map<String, String> body) {
-
         LOG.info("Start reservarCupo");
 
         // Se obtiene del body el valor del id del curso
@@ -52,19 +51,17 @@ public class ReservarCupoMSController {
 
                 return false;
             }
-
         } else {
-
-            //Crea un nuevo curso para controlar sus reservas
+            //Crea un nuevo curso para controlar sus reservas, según la regla de negocio máximo 5
             CupoModel reservarCupoModel = new CupoModel(idCurso, 5, 1);
 
             reservarCupoRepository.save(reservarCupoModel);
 
             return true;
         }
-
         LOG.info("End reservarCupo");
 
         return true;
     }
 }
+
