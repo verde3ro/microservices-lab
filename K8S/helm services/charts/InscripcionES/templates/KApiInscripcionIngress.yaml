@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress #Tipo de objeto de Kubernetes
 metadata:
   name: {{ .Values.kubernetes.api.nombre_global }}-ingress #Nombre del Ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: {{ .Values.kubernetes.api.ingress.host }} #Nombre de dominio a resolver
