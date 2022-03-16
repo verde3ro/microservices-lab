@@ -14,7 +14,7 @@ spec:
       release: {{ .Release.Name }}
   serviceName: {{ template "cp-kafka.fullname" . }}-headless
   podManagementPolicy: {{ .Values.podManagementPolicy }}
-  replicas: {{ default 3 .Values.brokers }}
+  replicas: {{ .Values.brokers }}
   updateStrategy:
     type: {{ .Values.updateStrategy }}
   template:
